@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/bootstrap.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header>
+        {%include 'navbar.html'%}
+    </header> 
+    <div class="container bg-info">
+        <section class="row">
+            <div class="col-md-6">
+                <div class="card shadow p-1 my-3">
+                    <h4 class="text-center text-dark bg-danger">{{single_record[1]}}</h4>
+                    <img src="../static/products/{{single_record[8]}}" alt="" width="100%" height="350px"
+                        style="border: 15px;">
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <p class="lead text-center mt-2">{{single_record[2]}}</p>
+                <h5 class="text-center">Cost: Kshs {{single_record[3]}}</h5>
+                <h5 class="text-center">Discount: Kshs {{single_record[4]}}</h5>
+
+                {% if session['user_key'] %}
+                <div class="card shadow  p-2 mt-2">
+                    <form action="/payment" method="post">
+                        <input type="number" name="amount" value="{{single_record[3]}}" class="form-control" >
+                        <br>
+                        <input type="tel" name="phone" placeholder="Enter Your Phone 2547XXXXXXXXX" class="form-control"
+                            required> <br>
+                        <input type="submit" value="Lipa na Mpesa" class="btn btn-success mt-3">
+
+                    </form>
+
+                </div>
+
+                <a href="/user_logout" class="btn btn-danger mt-4">Log Out</a>
+                <br>
+                <br>
+                <a href="/post_feedback" class="btn btn-dark">Post FeedBack</a>
+                <a href="/view_feedback" class="btn btn-dark">View Feddback</a>
+
+
+                {% else %}
+
+                <br>
+                <a href="/user_login" class="btn btn-dark mt-4" style="margin-left: 150px;">Sign in to purchase</a>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+
+        <br><br>
+        <h3>You May Also Like....</h3>
+        <section class="row">
+            {% for item in similar_products %}
+            <div class="col-md-4">
+                <div class="card shadow my-2 buycard">
+                    <img src="../static/products/{{item[8]}}" alt="" width="100%" height="300px"
+                        style="border-radius: 15px;">
+                    <h4 class="text-center text-white">{{item[1]}}</h4>
+                    <p class="badge bg-dark text-center">{{item[6]}}</p>
+                    <h5 class="text-center">Kshs {{item[4]}}</h5>
+
+                    <a href="/single_item/{{item[0]}}" class="btn btn-dark">View Product</a>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </section>
+
+        <section class="row">
+            {% for item in similar_products %}
+            <div class="col-md-4">
+                <div class="card shadow my-2 buycard">
+                    <img src="../static/products/{{item[8]}}" alt="" width="100%" height="300px"
+                        style="border-radius: 15px;">
+                    <h4 class="text-center text-white">{{item[1]}}</h4>
+                    <p class="badge bg-warning text-center">{{item[6]}}</p>
+                    <h5 class="text-center">Kshs {{item[4]}}</h5>
+
+                    <a href="/single_item/{{item[1]}}" class="btn btn-dark">View Product</a>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </section>
+
+        <section class="row">
+            {% for item in similar_products %}
+            <div class="col-md-4">
+                <div class="card shadow my-2 buycard">
+                    <img src="../static/products/{{item[8]}}" alt="" width="100%" height="300px"
+                        style="border-radius: 15px;">
+                    <h4 class="text-center text-white">{{item[1]}}</h4>
+                    <p class="badge bg-warning text-center">{{item[6]}}</p>
+                    <h5 class="text-center">Kshs {{item[4]}}</h5>
+
+                    <a href="/single_item/{{item[2]}}" class="btn btn-dark">View Product</a>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </section>
+
+        <section class="row">
+            {% for item in similar_products %}
+            <div class="col-md-4">
+                <div class="card shadow my-2 buycard">
+                    <img src="../static/products/{{item[8]}}" alt="" width="100%" height="300px"
+                        style="border-radius: 15px;">
+                    <h4 class="text-center text-white">{{item[1]}}</h4>
+                    <p class="badge bg-warning text-center">{{item[6]}}</p>
+                    <h5 class="text-center">Kshs {{item[4]}}</h5>
+
+                    <a href="/single_item/{{item[3]}}" class="btn btn-dark">View Product</a>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </section>
+
+        <section class="row">
+            {% for item in similar_products %}
+            <div class="col-md-4">
+                <div class="card shadow my-2 buycard">
+                    <img src="../static/products/{{item[8]}}" alt="" width="100%" height="300px"
+                        style="border-radius: 15px;">
+                    <h4 class="text-center text-white">{{item[1]}}</h4>
+                    <p class="badge bg-warning text-center">{{item[6]}}</p>
+                    <h5 class="text-center">Kshs {{item[4]}}</h5>
+
+                    <a href="/single_item/{{item[5]}}" class="btn btn-dark">View Product</a>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </section>
+
+    </div>
+    <section>
+        {%include 'footer.html'%}
+        
+    </section>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>
